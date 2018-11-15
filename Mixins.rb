@@ -5,24 +5,24 @@ module Garb
   end
   
   module ClassMethods
-    attr_reader :last, :all
-   
+    attr_reader :count, :all
+    
     def arr(obj)
-      @animals ||= []
-      @animals << obj
+      @all ||= []
+      @all << obj
     end
 
-    def inc
-      @last ||= 0
-      @last += 1
+    def increment
+      @count ||= 0
+      @count += 1
     end
   end
 
   module InstanceMethods
     private
-    def inc
-      self.class.arr(self)
-      self.class.inc
+    def increment(obj)
+      self.class.arr(obj)
+      self.class.increment
     end
   end  
 end
@@ -30,23 +30,22 @@ end
 class Dog
   include Garb  
   def initialize
-    inc
+    increment(self)
   end
 end
 
 class Persone
   include Garb
-
   def initialize
-    inc
+    increment(self)
   end
 end
 
 s = Persone.new
 d = Dog.new
 5.times { Dog.new }
-p Dog.last
-p Persone.last
+p Dog.count
+p Persone.count
 p Dog.all
 
 puts '======================================'
