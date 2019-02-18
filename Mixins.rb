@@ -7,9 +7,9 @@ module Garb
   module ClassMethods
     attr_reader :count, :all
     
-    def arr(obj)
+    def arr(object)
       @all ||= []
-      @all << obj
+      @all << object
     end
 
     def increment
